@@ -1,0 +1,234 @@
+@charset "UTF-8";
+/*============================
+# 
+============================*/
+/* 共通変数 */
+/*============================
+# mixin
+============================*/
+/*============================
+# ボタン用
+============================*/
+/*============================
+# 非活性ボタン用
+============================*/
+/*============================
+# 枠ありのボックス
+============================*/
+/*============================
+# ハンバーガーメニュー
+============================*/
+/*============================
+# ベンダープレフィックス付与
+============================*/
+/*============================
+# セレクトボックスのデザインリセット
+============================*/
+/*============================
+# 下向き三角形を描写
+============================*/
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  background-color: #fafafa;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100%;
+}
+
+/* 共通パーツのCSSを記述する */
+/*============================
+# ヘッダー
+============================*/
+.header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 35px;
+  background-color: #000;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.header__items {
+  margin-left: auto;
+}
+
+.header__item.--openMenuButton {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  user-select: none;
+  cursor: pointer;
+  background-color: #000;
+}
+
+.header__item.--openMenuButton:hover {
+  background-color: black;
+  transition: all 0.3s ease;
+}
+
+.header__item.--openMenuButton:active {
+  background-color: black;
+}
+
+.header__item.--openMenuButton .hamburgerMenu {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 1s ease;
+}
+
+.header__item.--openMenuButton .hamburgerMenu::before, .header__item.--openMenuButton .hamburgerMenu::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.5s ease;
+}
+
+.header__item.--openMenuButton .hamburgerMenu::before {
+  top: -7px;
+}
+
+.header__item.--openMenuButton .hamburgerMenu::after {
+  top: 7px;
+}
+
+.header__item.--openMenuButton .hamburgerMenu.--active {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.header__item.--openMenuButton .hamburgerMenu.--active::before {
+  top: 0;
+  transform: rotate(315deg);
+}
+
+.header__item.--openMenuButton .hamburgerMenu.--active::after {
+  top: 0;
+  transform: rotate(-315deg);
+}
+
+.header__menu {
+  visibility: hidden;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  user-select: none;
+  text-align: center;
+  z-index: 5;
+  transition: all 1s ease;
+}
+
+.header__menu.--active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.header__menu__item.--title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.header__menu__item.--link {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 500px;
+  padding: 5px;
+  color: #fff;
+  font-size: 13px;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header__menu__item.--link:hover {
+  text-decoration: underline;
+}
+
+.header__menu__item.--link.--indent1 {
+  padding-left: 35px;
+}
+
+/*============================
+# コンテンツエリア
+============================*/
+.content {
+  padding-top: 35px;
+}
+
+/*============================
+# ローディング
+============================*/
+.loading {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
+
+.loading__imageBox__img {
+  width: 40px;
+}
+
+.loading__text {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+}
+
+.error {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.error__item {
+  padding: 10px;
+}
+
+.error__title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00f;
+}
+
+.error__subTitle {
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.error__return {
+  font-size: 13px;
+  text-align: right;
+}

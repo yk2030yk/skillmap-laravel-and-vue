@@ -1,0 +1,163 @@
+.app {
+    text-align: center;
+    font-size: 12px;
+    padding: 30px 30px;
+}
+div.skill-table {
+    width: 90%;
+    min-width: 700px;
+    height: 600px;
+    overflow: scroll;
+    display: inline-block;
+}
+table .skill-table, .certification-table {
+    text-align: center;
+    border-collapse: separate;
+    position: relative;
+    display: inline-block;
+    table-layout: fixed;
+}
+table thead th {
+    background-color: #eee;
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+}
+table tbody th.large-category, th.categories {
+    background-color: #eee;
+    position: sticky;
+    min-width: 186.4px;
+    left: 0px;
+    text-align: left;
+    z-index: 2;
+}
+table tbody th.small-category, th.category {
+    background-color: #eee;
+    position: sticky;
+    min-width: 156px;
+    left: 190px;
+    text-align: left;
+    z-index: 2;
+}
+table tbody th.skill, th.certification {
+    background-color: #eee;
+    position: sticky;
+    min-width: 156px;
+    left: 350px;
+    text-align: left;
+    z-index: 2;
+}
+table thead th.blank1 {
+    background-color: white;
+    position: sticky;
+    min-width: 186.4px;
+    left: 0px;
+    z-index: 3;
+    text-align: left;
+}
+table thead th.blank2 {
+    background-color: white;
+    position: sticky;
+    min-width: 156px;
+    left: 190px;
+    z-index: 3;
+    text-align: left;
+}
+table thead th.blank3 {
+    background-color: white;
+    position: sticky;
+    min-width: 156px;
+    left: 350px;
+    z-index: 3;
+    text-align: left;
+}
+
+table td.name {
+    min-width: 20.5px;
+}
+
+div.certification-table {
+    width: 90%;
+    min-width: 700px;
+    height: 600px;
+    overflow: scroll;
+    display: none;
+}
+
+.name, .large-category, .small-category, .skill, .categories, .category, .certification {
+    border : 1px solid black;
+}
+
+.userName {
+    writing-mode: vertical-rl;
+    margin: 0 auto;
+    white-space: nowrap;
+    width: 10px;
+    line-height: 1em;
+    text-orientation: upright;
+    padding: 5px;
+}
+.notice {
+    padding: 5px;
+    border: solid 1px #f00;
+}
+.refine-menu {
+    margin-top: 10px;
+    margin-left: 70px;
+    width: 300px;
+    height: 100px;
+    float: left;
+}
+.refine-large-category {
+    font-size: 18px;
+    padding: 5px 5px;
+    width: 280px;
+}
+.refine-team {
+    margin-top: 5px;
+    padding: 5px 5px;
+    font-size: 18px;
+    width: 140px;
+}
+.refine-annual {
+    margin-top:5px;
+    padding: 5px 5px;
+    font-size: 18px;
+    width: 140px;
+}
+.change-button {
+    width: 200px;
+    height: 100px;
+    margin-top: 10px;
+    margin-right: 70px;
+    float: right;
+}
+#change-skill-button, #change-certification-button  {
+    font-size: 18px;
+    padding: 5px 5px;
+    width: 80px;
+    margin-right: 10px;
+    display: inline-block;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFF;
+}
+.register-button {
+    float: left;
+    width: 350px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 70px;
+}
+#register-skill-button, #register-member-button {
+    font-size: 18px;
+    padding: 5px 5px;
+    width: 150px;
+    margin-left: 10px;
+    display: inline-block;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFF;
+}
+
+

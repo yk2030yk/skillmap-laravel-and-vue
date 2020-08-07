@@ -1,0 +1,74 @@
+@import "resources/assets/sass/_common.scss";
+
+.filterBar {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	right: 30px;
+	top: 40px;
+	background-color: rgba(0,0,0,0.3);
+	padding: 5px;
+	border-radius: 2px;
+	&__title {
+		color: #fff;
+		display: flex;
+		height: 20px;
+	}
+	&__close {
+		width: 20px;
+		height: 20px;
+		margin-left: auto;
+		position: relative;
+		&::before, &::after {
+			content: '';
+			position: absolute;
+			width: 20px;
+			height: 2px;
+			background-color: #fff;
+			transition: all 0.5s ease;
+		}
+		&::before {
+			top: 48%;
+			transform: rotate(315deg);
+		}
+		&::after {
+			top: 48%;
+			transform: rotate(-315deg);
+		}
+	}
+	&__item {
+		margin-top: 10px;
+		&.--parts_kind {
+			border-radius: 3px;
+			background-color: #eee;
+			label {
+				cursor: pointer;
+			}
+		}
+	}
+	&__closeArea {
+		height: 0px;
+		transition: all 0.5s ease;
+		overflow: hidden;
+		&.--active {
+			height: 140px;
+		}
+	}
+}
+
+.contentMain {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	margin-bottom: 40px;
+}
+
+.contentChart {
+	margin-top: 40px;
+	justify-content: center;
+	display: flex;
+	@include borderbox;
+}

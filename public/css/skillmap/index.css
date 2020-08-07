@@ -1,0 +1,517 @@
+@charset "UTF-8";
+/*============================
+# 
+============================*/
+/* 共通変数 */
+/*============================
+# mixin
+============================*/
+/*============================
+# ボタン用
+============================*/
+/*============================
+# 非活性ボタン用
+============================*/
+/*============================
+# 枠ありのボックス
+============================*/
+/*============================
+# ハンバーガーメニュー
+============================*/
+/*============================
+# ベンダープレフィックス付与
+============================*/
+/*============================
+# セレクトボックスのデザインリセット
+============================*/
+/*============================
+# 下向き三角形を描写
+============================*/
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  background-color: #fafafa;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100%;
+}
+
+/* 共通パーツのCSSを記述する */
+/*============================
+# ヘッダー
+============================*/
+.header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 35px;
+  background-color: #000;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.header__items {
+  margin-left: auto;
+}
+
+.header__item.--openMenuButton {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  user-select: none;
+  cursor: pointer;
+  background-color: #000;
+}
+
+.header__item.--openMenuButton:hover {
+  background-color: black;
+  transition: all 0.3s ease;
+}
+
+.header__item.--openMenuButton:active {
+  background-color: black;
+}
+
+.header__item.--openMenuButton .hamburgerMenu {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 1s ease;
+}
+
+.header__item.--openMenuButton .hamburgerMenu::before, .header__item.--openMenuButton .hamburgerMenu::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.5s ease;
+}
+
+.header__item.--openMenuButton .hamburgerMenu::before {
+  top: -7px;
+}
+
+.header__item.--openMenuButton .hamburgerMenu::after {
+  top: 7px;
+}
+
+.header__item.--openMenuButton .hamburgerMenu.--active {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.header__item.--openMenuButton .hamburgerMenu.--active::before {
+  top: 0;
+  transform: rotate(315deg);
+}
+
+.header__item.--openMenuButton .hamburgerMenu.--active::after {
+  top: 0;
+  transform: rotate(-315deg);
+}
+
+.header__menu {
+  visibility: hidden;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  user-select: none;
+  text-align: center;
+  z-index: 5;
+  transition: all 1s ease;
+}
+
+.header__menu.--active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.header__menu__item.--title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.header__menu__item.--link {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 500px;
+  padding: 5px;
+  color: #fff;
+  font-size: 13px;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header__menu__item.--link:hover {
+  text-decoration: underline;
+}
+
+.header__menu__item.--link.--indent1 {
+  padding-left: 35px;
+}
+
+/*============================
+# コンテンツエリア
+============================*/
+.content {
+  padding-top: 35px;
+}
+
+/*============================
+# ローディング
+============================*/
+.loading {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
+
+.loading__imageBox__img {
+  width: 40px;
+}
+
+.loading__text {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+}
+
+/*============================
+# コンテンツ
+============================*/
+.contentHead {
+  display: flex;
+  padding: 15px 15px 0 15px;
+}
+
+.contentHead__item.--right {
+  margin-left: auto;
+}
+
+.contentMain {
+  text-align: center;
+  padding: 15px 15px 0 15px;
+}
+
+/*============================
+# テーブル切り替えパーツ
+============================*/
+.toggleTable {
+  font-weight: bold;
+  text-align: center;
+}
+
+.toggleTable__name {
+  width: 100px;
+  padding: 5px;
+  margin: 5px;
+  font-weight: normal;
+  user-select: none;
+  color: #d4d4d4;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #a9a9a9;
+}
+
+.toggleTable__name:hover {
+  background-color: #959595;
+  transition: all 0.3s ease;
+}
+
+.toggleTable__name:active {
+  background-color: dimgray;
+}
+
+.toggleTable__name.--active {
+  background-color: #e86363;
+  color: #fff;
+  cursor: default;
+}
+
+/*============================
+# 絞り込み条件
+============================*/
+.narrowCond {
+  display: flex;
+  margin-left: auto;
+  padding: 10px;
+  border: solid 1px #b7b7b7;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.narrowCond__item {
+  display: inline-block;
+  margin-left: auto;
+  text-align: left;
+}
+
+.narrowCond__item__select {
+  max-width: 200px;
+}
+
+/*============================
+# スキルマップテーブル
+============================*/
+.skillmap {
+  display: inline-block;
+  width: 100%;
+  height: 550px;
+  overflow: scroll;
+  font-size: 11px;
+  text-align: center;
+  user-select: none;
+  border: solid 1px #b7b7b7;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.skillmap__table {
+  table-layout: fixed;
+  border-spacing: 0px;
+  word-wrap: break-word;
+  user-select: none;
+}
+
+.skillmap__column {
+  text-align: center;
+  border-style: solid;
+  border-color: #b7b7b7;
+  border-width: 0px 1px 1px 0px;
+  box-shadow: 0px 1px 1px 0px rgba(45, 45, 45, 0.5);
+}
+
+.skillmap__column.--row_head.--col_head {
+  background-color: #fff;
+}
+
+.skillmap__column.--row_head.--col_body {
+  cursor: pointer;
+  background-color: #f3f3f3;
+}
+
+.skillmap__column.--row_head.--col_body:hover {
+  background-color: #ffe7a2;
+  transition: all 0.3s ease;
+}
+
+.skillmap__column.--row_head.--col_body:active {
+  background-color: #b3b3b3;
+}
+
+.skillmap__column.--row_body.--col_head {
+  background-color: #fff;
+}
+
+.skillmap__column.--row_body.--col_head.--third {
+  cursor: pointer;
+  background-color: #eef7ee;
+}
+
+.skillmap__column.--row_body.--col_head.--third:hover {
+  background-color: #d3e9d3;
+  transition: all 0.3s ease;
+}
+
+.skillmap__column.--row_body.--col_head.--third:active {
+  background-color: #99cd99;
+}
+
+.skillmap__column.--row_body.--col_head.--third.--skill {
+  cursor: pointer;
+  background-color: #eef7ee;
+}
+
+.skillmap__column.--row_body.--col_head.--third.--skill:hover {
+  background-color: #d3e9d3;
+  transition: all 0.3s ease;
+}
+
+.skillmap__column.--row_body.--col_head.--third.--skill:active {
+  background-color: #99cd99;
+}
+
+.skillmap__column.--row_body.--col_head.--third.--certification {
+  cursor: pointer;
+  background-color: #f0e4a6;
+}
+
+.skillmap__column.--row_body.--col_head.--third.--certification:hover {
+  background-color: #ebd983;
+  transition: all 0.3s ease;
+}
+
+.skillmap__column.--row_body.--col_head.--third.--certification:active {
+  background-color: #dec238;
+}
+
+.skillmap__column.--row_body.--col_body {
+  background-color: #fff;
+}
+
+.skillmap__column.--row_body.--col_body.--lv1 {
+  background-color: white;
+}
+
+.skillmap__column.--row_body.--col_body.--lv2 {
+  background-color: white;
+}
+
+.skillmap__column.--row_body.--col_body.--lv3 {
+  background-color: #d6e3ef;
+}
+
+.skillmap__column.--row_body.--col_body.--lv4 {
+  background-color: #d6e3ef;
+}
+
+.skillmap__column.--row_body.--col_body.--lv5 {
+  background-color: #b2c9e0;
+}
+
+.skillmap__column.--row_body.--col_body.--lvGet {
+  background-color: #ffdfdf;
+}
+
+.skillmap__column.--row_body.--col_body.--lvNotGet {
+  background-color: white;
+}
+
+.skillmap__column.--col_head.--first {
+  background-color: #aad5aa;
+}
+
+.skillmap__column.--col_head.--first.--skill {
+  background-color: #aad5aa;
+}
+
+.skillmap__column.--col_head.--first.--certification {
+  background-color: #e2c94e;
+}
+
+.skillmap__column.--col_head.--second {
+  background-color: #cce6cc;
+}
+
+.skillmap__column.--col_head.--second.--skill {
+  background-color: #cce6cc;
+}
+
+.skillmap__column.--col_head.--second.--certification {
+  background-color: #e9d67a;
+}
+
+.skillmap__column.--col_head.--third {
+  background-color: #eef7ee;
+}
+
+.skillmap__column.--col_head.--third.--skill {
+  background-color: #eef7ee;
+}
+
+.skillmap__column.--col_head.--third.--certification {
+  background-color: #f0e4a6;
+}
+
+.skillmap__column.--sticky {
+  position: sticky;
+}
+
+.skillmap__column.--sticky.--row_head {
+  top: 0;
+}
+
+.skillmap__column.--sticky.--row_head.--col_head {
+  z-index: 4;
+}
+
+.skillmap__column.--sticky.--row_head.--col_body {
+  z-index: 3;
+}
+
+.skillmap__column.--sticky.--row_body.--col_head {
+  z-index: 2;
+}
+
+.skillmap__column.--sticky.--row_body.--col_body {
+  z-index: 1;
+}
+
+.skillmap__column.--sticky.--col_head.--first {
+  left: 0;
+}
+
+.skillmap__column.--sticky.--col_head.--second {
+  left: 153px;
+}
+
+.skillmap__column.--sticky.--col_head.--third {
+  left: 306px;
+}
+
+.skillmap__columnContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.skillmap__columnContent.--row_head {
+  height: 120px;
+}
+
+.skillmap__columnContent.--row_head.--col_body {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+.skillmap__columnContent.--row_body {
+  height: 35px;
+}
+
+.skillmap__columnContent.--col_head.--first {
+  width: 150px;
+}
+
+.skillmap__columnContent.--col_head.--second {
+  width: 150px;
+}
+
+.skillmap__columnContent.--col_head.--third {
+  width: 150px;
+}
+
+.skillmap__columnContent.--col_body {
+  width: 35px;
+}
+
+.skillmap__sortArrow {
+  color: #ff5858;
+}

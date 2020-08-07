@@ -1,0 +1,126 @@
+/*============================
+# mixin
+============================*/
+@mixin content-padding {
+	padding: $padding $padding 0 $padding;
+}
+
+/*============================
+# ボタン用
+============================*/
+@mixin button($bg, $hover: null, $active: null) {
+	cursor: pointer;
+	background-color: $bg;
+	&:hover {
+		@if ($hover) { background-color: $hover; }
+		@else { background-color: darken($bg, 8%); }
+		transition: all 0.3s ease;
+	}
+	&:active {
+		@if ($active) { background-color: $active; }
+		@else { background-color: darken($bg, 25%); }
+	} 
+}
+
+/*============================
+# 非活性ボタン用
+============================*/
+@mixin buttonDisable($bg) {
+	cursor: default;
+	background-color: $bg;
+	&:hover {
+		background-color: $bg;
+	}
+	&:active {
+		background-color: $bg;
+	} 
+}
+
+/*============================
+# 枠ありのボックス
+============================*/
+@mixin borderbox {
+	padding: 10px;
+	border: solid 1px #b7b7b7;
+	border-radius: 3px;
+	background-color: #fff;
+}
+
+/*============================
+# ハンバーガーメニュー
+============================*/
+@mixin hamburgerMenu($color: #fff) {
+	.hamburgerMenu {
+		$h: 2px;
+		$p: $h * 3 + 1;
+
+		position: relative;
+		width: 100%;
+		height: $h;
+		background-color: $color;
+		transition: all 1s ease;
+
+		&::before, &::after {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: $h;
+			background-color: $color;
+			transition: all 0.5s ease;
+		}
+		&::before {
+			top: $p * -1;
+		}
+		&::after {
+			top: $p;
+		}
+		&.--active {
+			background-color: rgba($color, 0);
+			&::before {
+				top: 0;
+				transform: rotate(315deg);
+			}
+			&::after {
+				top: 0;
+				transform: rotate(-315deg);
+			}
+		}
+	}
+}
+
+/*============================
+# ベンダープレフィックス付与
+============================*/
+@mixin setPrefix($name, $value) {
+	$set-prefix: '' , -moz- , -webkit-;
+	@each $prefix in $set-prefix {
+		#{$prefix}#{$name}: $value;
+	}
+}
+
+/*============================
+# セレクトボックスのデザインリセット
+============================*/
+@mixin resetSelectBox {
+	text-overflow: ellipsis;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	@include setPrefix(appearance, none);
+}
+
+/*============================
+# 下向き三角形を描写
+============================*/
+@mixin draqTriangleDown($w, $color) {
+	$w: $w / 2;
+	content: '';
+	height: 0;
+	width: 0;
+	border-color: $color transparent transparent transparent;
+	border-style: solid solid solid solid;
+	border-width: ceil($w * 1.73205080757) $w 0px $w;
+}

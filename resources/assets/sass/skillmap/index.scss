@@ -1,0 +1,256 @@
+@import "resources/assets/sass/_common.scss";
+
+/*============================
+# コンテンツ
+============================*/
+.contentHead {
+	display: flex;
+	@include content-padding;
+	&__item {
+		&.--right {
+			margin-left: auto;
+		}
+	}
+}
+.contentMain {
+	text-align: center;
+	@include content-padding;
+}
+
+/*============================
+# テーブル切り替えパーツ
+============================*/
+.toggleTable {
+	font-weight: bold;
+	text-align: center;
+	&__name {
+		width: 100px;
+		padding: 5px;
+		margin: 5px;
+		font-weight: normal;
+		user-select: none;
+		color: #d4d4d4;
+		border-radius: 3px;
+		@include button(#a9a9a9);
+		&.--active {
+			background-color: #e86363;
+			color: #fff;
+			cursor: default;
+		}
+	}
+}
+
+/*============================
+# 絞り込み条件
+============================*/
+.narrowCond {
+	display: flex;
+	margin-left: auto;
+	@include borderbox;
+	&__item {
+		display: inline-block;
+		margin-left: auto;
+		text-align: left;
+		&__select {
+			max-width: 200px;
+		}
+	}
+}
+
+/*============================
+# スキルマップテーブル
+============================*/
+.skillmap {
+	$width__table : 100%;
+	$height__table: 550px;
+
+	$width__columnHead-first : 150px;
+	$width__columnHead-second: $width__columnHead-first;
+	$width__columnHead-third : $width__columnHead-first;
+	$width__columnBody       : 35px;
+	$height__rowHead: 120px;
+	$height__rowBody: 35px;
+
+	$border_width__table: 1px;
+	$border_color__table: #b7b7b7;
+
+	$color__rowHead_columnHead: #fff;
+	$color__rowHead_columnBody: #f3f3f3;
+	$color__rowBody_columnHead: #fff;
+	$color__rowBody_columnBody: #fff;
+
+	$color__rowHead-default      : #aad5aa;
+	$color__rowHead-skill        : #aad5aa;
+	$color__rowHead-certification: #e2c94e;
+	
+	$color__rowBody-columnBody-skill        : #b2c9e0;
+	$color__rowBody_columnBody-certification: #ffdfdf;
+
+	display: inline-block;
+	width: $width__table;
+	height: $height__table;
+	overflow: scroll;
+	font-size: 11px;
+	text-align: center;
+	user-select: none;
+	border: solid $border_width__table $border_color__table;
+	border-radius: 5px;
+	background-color: #ffffff;
+
+	&__table {
+		table-layout: fixed;
+		border-spacing: 0px;
+		word-wrap: break-word;
+		user-select: none;
+	}
+	&__row {}
+	&__column {
+		text-align: center;
+		border-style: solid;
+		border-color: #b7b7b7;
+		border-width: 0px $border_width__table $border_width__table 0px;
+		box-shadow: 0px 1px 1px 0px rgba(45,45,45,0.5);
+
+		&.--row_head {
+			&.--col_head {
+				background-color: $color__rowHead_columnHead;
+			}
+			&.--col_body {
+				@include button($color__rowHead_columnBody, #ffe7a2);
+			}
+		}
+		&.--row_body {
+			&.--col_head {
+				background-color: $color__rowBody_columnHead;
+				&.--third  {
+					$per: 20%;
+					@include button(lighten($color__rowHead-default, 20%));
+					&.--skill {
+						@include button(lighten($color__rowHead-skill, 20%));
+					}
+					&.--certification {
+						@include button(lighten($color__rowHead-certification, 20%));
+					}
+				}
+			}
+			&.--col_body {
+				background-color: $color__rowBody_columnBody;
+				&.--lv {
+					&1 {
+						background-color: lighten($color__rowBody_columnBody-skill, 100%);
+					}
+					&2 {
+						background-color: lighten($color__rowBody_columnBody-skill, 100%);
+					}
+					&3 {
+						background-color: lighten($color__rowBody_columnBody-skill, 10%);
+					}
+					&4 {
+						background-color: lighten($color__rowBody_columnBody-skill, 10%);
+					}
+					&5 {
+						background-color: lighten($color__rowBody_columnBody-skill, 0%);
+					}
+					&Get {
+						background-color: lighten($color__rowBody_columnBody-certification, 0%);
+					}
+					&NotGet {
+						background-color: lighten($color__rowBody_columnBody-certification, 100%);
+					}
+				}
+			}
+		}
+		&.--col_head {
+			@mixin bg($per: 0%) {
+				background-color: lighten($color__rowHead-default, $per);
+				&.--skill {
+					background-color: lighten($color__rowHead-skill, $per);
+				}
+				&.--certification {
+					background-color: lighten($color__rowHead-certification, $per);
+				}
+			}
+			&.--first  {
+				@include bg(0%);
+			}
+			&.--second {
+				@include bg(10%);
+			}
+			&.--third  {
+				@include bg(20%);
+			}
+		}
+		&.--col_body {
+			&.--first  {}
+			&.--second {}
+			&.--third  {}
+		}
+		&.--sticky {
+			$base_z-index: 1;
+			position: sticky;
+			&.--row_head {
+				top: 0;
+				&.--col_head {
+					z-index: $base_z-index + 3;
+				}
+				&.--col_body {
+					z-index: $base_z-index + 2;
+				}
+			}
+			&.--row_body {
+				&.--col_head {
+					z-index: $base_z-index + 1;
+				}
+				&.--col_body {
+					z-index: $base_z-index;
+				}
+			}
+			&.--col_head {
+				&.--first  {
+					left: 0;
+				}
+				&.--second {
+					left: $width__columnHead-first + $border_width__table * 3;
+				}
+				&.--third  {
+					left: $width__columnHead-first + 
+						$width__columnHead-second + ($border_width__table * 3) * 2;
+				}
+			}
+		}
+	}
+	&__columnContent {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		&.--row_head {
+			height: $height__rowHead;
+			&.--col_body {
+				writing-mode: vertical-rl;
+				text-orientation: upright;
+			}
+		}
+		&.--row_body {
+			height: $height__rowBody;
+		}
+		&.--col_head {
+			&.--first  {
+				width: $width__columnHead-first;
+			}
+			&.--second {
+				width: $width__columnHead-second;
+			}
+			&.--third  {
+				width: $width__columnHead-third;
+			}
+		}
+		&.--col_body {
+			width: $width__columnBody;
+		}
+	}
+	&__sortArrow {
+		color: #ff5858;
+	}
+}

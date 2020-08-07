@@ -1,0 +1,191 @@
+
+#================================
+# yumアップデート
+#================================
+sudo yum update
+
+
+
+#================================
+# httpdのインストール
+#================================
+# インストール
+sudo yum -y install httpd
+
+# インストール確認
+httpd -v
+
+# httpd起動
+sudo service httpd start
+
+
+
+#================================
+# パーミッション・ユーザー設定
+#================================
+sudo usermod -a -G apache ec2-user
+exit
+groups
+sudo chown -R ec2-user:apache /var/www
+sudo chmod 2775 /var/www
+find /var/www -type d -exec sudo chmod 2775 {} \;
+find /var/www -type f -exec sudo chmod 0664 {} \;
+
+
+
+#================================
+# php7のインストール
+#================================
+# awsリポジトリからphpを探す
+sudo amazon-linux-extras list | grep php
+
+# 見つかったものをインストール
+sudo amazon-linux-extras install php7.2
+
+# 必要なものをインストール
+sudo yum -y install php-mbstring.x86_64 php-xml.x86_64
+
+# バージョン確認
+php -v
+
+
+
+#================================
+# rdsのセキュリティグループ設定
+#================================
+# インバウンド/アウトバウンド
+#  - タイプ　　: MYSQL/Aurora
+#  - プロトコル: TCP
+#  - ポート　　: 3306
+#  - ソース　　: EC2のセキュリティグループ
+
+
+
+#================================
+# mysqlのインストール
+#================================
+# リポジトリの追加
+sudo yum -y install http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+
+# インストール
+sudo yum -y install mysql-community-server
+
+# バージョン確認
+mysql --version 
+
+# 接続確認 mysql -u root -p --port=3306 --host={エンドポイント}
+mysql -u root -p -h --port=3306 --host=skillmap-rds-mysql-server.cgisuw1uxhmk.ap-northeast-1.rds.amazonaws.com
+
+
+
+#================================
+# gitのインストール
+#================================
+# インストール
+sudo yum install git
+
+# インストールの確認
+git --version
+
+
+
+#================================
+# プロジェクトのクローン
+#================================
+# クローン場所に移動
+cd /var/www/
+
+# クローン
+git clone https://ykngsyk@bitbucket.org/ykngsyk/mymap.git
+
+# シンボリックリンクを貼る
+ln -s /var/www/mymap /home/ec2-user/mymap
+
+# storageフォルダの権限変更
+sudo chmod -R 777 /var/www/mymap/storage
+
+# cacheフォルダの権限変更
+sudo chmod -R 775 /var/www/mymap/bootstrap/cache
+
+
+
+#================================
+# composerの設定
+#================================
+# インストール
+sudo curl -sS https://getcomposer.org/installer | php
+
+# pathを通す
+sudo mv composer.phar /usr/local/bin/composer
+
+# 権限変更
+sudo chown root:root /usr/local/bin/composer
+
+# インストールの確認
+composer --version
+
+# アップデート
+composer update
+
+# アプリケーションに移動
+cd /var/www/mymap
+
+# インストール
+composer install
+
+
+
+#================================
+# ドキュメントルートの変更
+#================================
+# バックアップ作成
+sudo cp -a /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bak
+
+# ドキュメントルートを変更
+cp /var/www/mymap/setting/httpd/httpd.conf.production /etc/httpd/conf/httpd.conf
+
+# 設定の反映確認
+sudo service httpd configtest
+
+# 設定の反映
+sudo service httpd restart
+
+
+
+#================================
+# nodeのインストール
+#================================
+# リポジトリ追加
+curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
+
+# gcc-c++のインストール
+sudo yum -y install gcc-c++
+
+# nodeのインストール
+sudo yum -y install nodejs
+
+# バージョン確認
+node -v
+
+# アプリケーションに移動
+cd /var/www/mymap 
+
+# モジュールのインストール
+npm install
+
+
+
+#================================
+# マイグレーションの実行
+#================================
+# マイグレーションの実行
+php artisan migrate
+
+# シードデータ読み込み
+php artisan db:seed
+
+
+
+
+
+

@@ -1,0 +1,350 @@
+@charset "UTF-8";
+/*============================
+# 
+============================*/
+/* 共通変数 */
+/*============================
+# mixin
+============================*/
+/*============================
+# ボタン用
+============================*/
+/*============================
+# 非活性ボタン用
+============================*/
+/*============================
+# 枠ありのボックス
+============================*/
+/*============================
+# ハンバーガーメニュー
+============================*/
+/*============================
+# ベンダープレフィックス付与
+============================*/
+/*============================
+# セレクトボックスのデザインリセット
+============================*/
+/*============================
+# 下向き三角形を描写
+============================*/
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+  background-color: #fafafa;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100%;
+}
+
+/* 共通パーツのCSSを記述する */
+/*============================
+# ヘッダー
+============================*/
+.header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 35px;
+  background-color: #000;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.header__items {
+  margin-left: auto;
+}
+
+.header__item.--openMenuButton {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  user-select: none;
+  cursor: pointer;
+  background-color: #000;
+}
+
+.header__item.--openMenuButton:hover {
+  background-color: black;
+  transition: all 0.3s ease;
+}
+
+.header__item.--openMenuButton:active {
+  background-color: black;
+}
+
+.header__item.--openMenuButton .hamburgerMenu {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 1s ease;
+}
+
+.header__item.--openMenuButton .hamburgerMenu::before, .header__item.--openMenuButton .hamburgerMenu::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.5s ease;
+}
+
+.header__item.--openMenuButton .hamburgerMenu::before {
+  top: -7px;
+}
+
+.header__item.--openMenuButton .hamburgerMenu::after {
+  top: 7px;
+}
+
+.header__item.--openMenuButton .hamburgerMenu.--active {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.header__item.--openMenuButton .hamburgerMenu.--active::before {
+  top: 0;
+  transform: rotate(315deg);
+}
+
+.header__item.--openMenuButton .hamburgerMenu.--active::after {
+  top: 0;
+  transform: rotate(-315deg);
+}
+
+.header__menu {
+  visibility: hidden;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  user-select: none;
+  text-align: center;
+  z-index: 5;
+  transition: all 1s ease;
+}
+
+.header__menu.--active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.header__menu__item.--title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.header__menu__item.--link {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 500px;
+  padding: 5px;
+  color: #fff;
+  font-size: 13px;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header__menu__item.--link:hover {
+  text-decoration: underline;
+}
+
+.header__menu__item.--link.--indent1 {
+  padding-left: 35px;
+}
+
+/*============================
+# コンテンツエリア
+============================*/
+.content {
+  padding-top: 35px;
+}
+
+/*============================
+# ローディング
+============================*/
+.loading {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
+
+.loading__imageBox__img {
+  width: 40px;
+}
+
+.loading__text {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+}
+
+/*============================
+# ローディング
+============================*/
+.form {
+  text-align: center;
+  padding: 10px;
+}
+
+.form__items {
+  width: 500px;
+  display: inline-block;
+  padding: 10px;
+  padding: 10px;
+  border: solid 1px #b7b7b7;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.form__item__title {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: solid 1px #b7b7b7;
+}
+
+.form__item__messaage {
+  font-weight: bold;
+}
+
+.form__item__messaage.--success {
+  color: #0000dc;
+}
+
+.form__item__messaage.--error {
+  padding: 5px;
+  border: solid 1px #f00;
+  text-align: left;
+  color: #f00;
+}
+
+.form__item__submit {
+  display: inline-block;
+  width: 60%;
+  padding: 6px;
+  font-size: 14px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #0fa6ff;
+}
+
+.form__item__submit:hover {
+  background-color: #0090e5;
+  transition: all 0.3s ease;
+}
+
+.form__item__submit:active {
+  background-color: #005a8f;
+}
+
+.form__item__submit.--disable {
+  cursor: default;
+  background-color: #a9a9a9;
+}
+
+.form__item__submit.--disable:hover {
+  background-color: #a9a9a9;
+}
+
+.form__item__submit.--disable:active {
+  background-color: #a9a9a9;
+}
+
+.formTable__td {
+  width: 500px;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.formTable__label {
+  display: flex;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.formTable__label__required {
+  margin-left: 5px;
+  font-size: 10px;
+  color: #F37E00;
+  border: solid 1px #F37E00;
+  padding: 2px;
+  background-color: #fff;
+}
+
+.formTable__input {
+  width: 250px;
+  padding: 5px;
+  border: solid 1px #999;
+  border-radius: 2px;
+  box-shadow: inset 1px 4px 9px -6px rgba(0, 0, 0, 0.5);
+}
+
+.formTable__input::placeholder {
+  color: #bbb;
+}
+
+.formTable__selectBox {
+  position: relative;
+  width: 250px;
+  border: 1px solid #999;
+  border-radius: 2px;
+  background-color: #eee;
+  box-shadow: inset 1px 4px 9px -6px rgba(0, 0, 0, 0.5);
+}
+
+.formTable__selectBox::before {
+  content: '';
+  height: 0;
+  width: 0;
+  border-color: #999 transparent transparent transparent;
+  border-style: solid solid solid solid;
+  border-width: 9px 5px 0px 5px;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  pointer-events: none;
+}
+
+.formTable__selectBox select {
+  text-overflow: ellipsis;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  padding: 5px;
+  width: 100%;
+  color: #000;
+}

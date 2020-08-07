@@ -1,0 +1,60 @@
+1. Block Element Stateで表現する
+2. 構成
+.blockName
+	.--state_name
+	.blockName__elementName
+		.--state_name
+		.blockName__elementName__elementName
+			.--state_name
+
+3. ルール
+・BlockNameとElementNameはアンダースコア2個でつなげる
+・Block Elementはキャメルケースで表現する
+　子要素の場合も同様につなげる ※基本的には別要素名を付け子要素は避けるようにする
+
+・Stateは先頭にハイフン2個をつけて表現する
+・Stateはスネークケースで表現する
+・Stateは絶対に個別で定義をしないで要素と組み合わせて定義する
+
+・共通のCSSは@mixinで定義する。クラスを当てることはしない。
+・クラス名をjavascriptで使用しない
+　もし使用したくなった場合はprefixを付ける
+　 javascript : js-
+　 jquery     : jq-
+
+・変数はなるべくBlock内に定義する
+
+4. 例
+HTML:
+<div class="headerMenu">
+	<div class="headerMenu__title">メニュー</div>
+	<div class="headerMenu__items">
+		<div class="headerMenu__items__item --button">閉じる</div>
+		<div class="headerMenu__items__item --link --active">リンク1</div>
+		<div class="headerMenu__items__item --link">リンク2</div>
+	</div>
+</div>
+
+SCSS:
+.headerMenu {
+	$gray: #090909;
+	background-color: #fff;
+	border: solid 1px $gray;
+	&__title {
+		color: $gray;
+	}
+	&__items {
+		&__item {
+			&.--button {
+				background-color: #000;
+				color: #fff;
+			}
+			&.--link {
+				color: #000;
+				&.--active {
+					color: #f00;
+				}
+			}
+		}
+	}
+}

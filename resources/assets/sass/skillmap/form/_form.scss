@@ -1,0 +1,112 @@
+@import "resources/assets/sass/_common.scss";
+
+/*============================
+# ローディング
+============================*/
+.form {
+	text-align: center;
+	padding: 10px;
+	&__items {
+		width: 500px;
+		display: inline-block;
+		padding: 10px;
+		@include borderbox;
+	}
+	&__item {
+		&__title {
+			margin-bottom: 10px;
+			padding-bottom: 10px;
+			font-weight: bold;
+			font-size: 14px;
+			border-bottom: solid 1px #b7b7b7;
+		}
+		&__messaages {}
+		&__messaage {
+			font-weight: bold;
+			&.--success {
+				color: #0000dc;
+			}
+			&.--error {
+				padding: 5px;
+				border: solid 1px #f00;
+				text-align: left;
+				color: #f00;
+			}
+		}
+		&__submit {
+			display: inline-block;
+			width: 60%;
+			padding: 6px;
+			font-size: 14px;
+			box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
+			border-radius: 5px;
+			color: #fff;
+			@include button(#0fa6ff);
+			&.--disable {
+				@include buttonDisable(#a9a9a9);
+			}
+		}
+	}
+}
+.formTable {
+	&__tr {
+		padding: 5px;
+		margin-bottom: 15px;
+		&.--validateError {
+			border: solid 1px #f00;
+			border-radius: 5px;
+		}
+	}
+	&__td {
+		width: 500px;
+		text-align: left;
+		&.--left {}
+		&.--right {}
+	}
+	&__label {
+		display: flex;
+		padding: 5px;
+		font-weight: bold;
+		&__required {
+			margin-left: 5px;
+			font-size: 10px;
+			color: #F37E00;
+			border: solid 1px #F37E00;
+			padding: 2px;
+			background-color: #fff;
+		}
+	}
+	&__input {
+		width: 250px;
+		padding: 5px;
+		border: solid 1px #999;
+		border-radius: 2px;
+		box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
+		&::placeholder {
+			color: #bbb;
+		}
+	}
+	&__selectBox {
+		position: relative;
+		width: 250px;
+		border: 1px solid #999;
+		border-radius: 2px;
+		background-color: #eee;
+		box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
+		&::before {
+			@include draqTriangleDown(10px, #999);
+			position: absolute;
+			top: 7px;
+			right: 7px;
+			pointer-events: none;
+		}
+		& select {
+			@include resetSelectBox
+			padding: 5px;
+			width: 100%;
+			color: #000;
+		}
+		& option {
+		}
+	}
+}
